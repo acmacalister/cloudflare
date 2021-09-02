@@ -19,6 +19,13 @@ type Provider struct {
 	// the second can be changed to Read.
 	APIToken string `json:"api_token,omitempty"`
 
+	// HTTPClient allows the caller to provide a custom http
+	// client implementation. Its zero value is DefaultClient 
+	// which uses DefaultTransport. This is valuable to set
+	// public Resolver for when the acme challange my fail
+	// with standard ISP.
+	HTTPClient http.Client
+
 	zones   map[string]cfZone
 	zonesMu sync.Mutex
 }

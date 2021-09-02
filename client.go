@@ -117,7 +117,7 @@ func (p *Provider) getZoneInfo(ctx context.Context, zoneName string) (cfZone, er
 func (p *Provider) doAPIRequest(req *http.Request, result interface{}) (cfResponse, error) {
 	req.Header.Set("Authorization", "Bearer "+p.APIToken)
 
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := p.HTTPClient.Do(req)
 	if err != nil {
 		return cfResponse{}, err
 	}
